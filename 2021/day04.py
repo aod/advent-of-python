@@ -19,7 +19,7 @@ class Board:
                 return True
 
 
-def part1(draw, boards):
+def part1(draw: List[int], boards: List[List[List[int]]]):
     bingo = [Board(b, set()) for b in boards]
 
     for num in draw:
@@ -29,11 +29,11 @@ def part1(draw, boards):
                 return num * sum(board.unmarked())
 
 
-def part2(draw, boards):
+def part2(draw: List[int], boards: List[List[List[int]]]):
     bingo = [Board(b, set()) for b in boards]
 
     for num in draw:
-        next_bingo = []
+        next_bingo: List[Board] = []
         for board in bingo:
             board.marked.add(num)
             if not board.has_won():
@@ -50,4 +50,4 @@ if __name__ == "__main__":
     boards = [boards[i*5:i*5+5] for i in range(0, len(boards) // 5)]
 
     print(f"Part 1: {part1(draw, boards)}")
-    print(f"Part 1: {part2(draw, boards)}")
+    print(f"Part 2: {part2(draw, boards)}")
