@@ -2,7 +2,7 @@ from typing import List, Set
 from aocd import lines
 
 
-def part1(displays: List[str]):
+def part1(displays: List[str] = lines):
     result = 0
     for display in displays:
         _, output = tuple([part.split(" ") for part in display.split(" | ")])
