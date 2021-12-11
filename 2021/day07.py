@@ -1,29 +1,17 @@
-import sys
 from typing import List
 from aocd import data
 
 
+def gauss(n: int):
+    return n * (n + 1) // 2
+
+
 def part1(crabs: List[int]):
-    min_fuel = sys.maxsize
-    for target in crabs:
-        fuel = 0
-        for pos in crabs:
-            fuel += abs(target - pos)
-        if fuel < min_fuel:
-            min_fuel = fuel
-    return min_fuel
+    return min([sum(abs(target - pos) for pos in crabs) for target in crabs])
 
 
 def part2(crabs: List[int]):
-    min_fuel = sys.maxsize
-    for target in range(min(crabs), max(crabs)):
-        fuel = 0
-        for pos in crabs:
-            n = abs(target - pos)
-            fuel += n * (n + 1) // 2
-        if fuel < min_fuel:
-            min_fuel = fuel
-    return min_fuel
+    return min([sum(gauss(abs(target - pos)) for pos in crabs) for target in range(min(crabs), max(crabs))])
 
 
 if __name__ == "__main__":
