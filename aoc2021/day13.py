@@ -30,12 +30,13 @@ class Paper():
 
         return Paper(dots, max_x, max_y)
 
-    def dump(self):
+    def __str__(self):
+        s = ""
         for y in range(self.max_y+1):
             for x in range(self.max_x+1):
-                print("█" if (x, y) in self.dots else ".", end="")
-            print()
-        print()
+                s += "█" if (x, y) in self.dots else "."
+            s += "\n"
+        return s
 
 
 def parse(input: str = data) -> Tuple[Paper, List[Tuple[int, int]]]:
@@ -63,10 +64,9 @@ def part2(input: str = data):
     paper, folds = parse(input)
     for axis, n in folds:
         paper = paper.fold(axis, n)
-    paper.dump()
+    return str(paper)
 
 
 if __name__ == "__main__":
     print(f"Part 1: {part1()}")
-    print("Part 2:")
-    part2()
+    print(f"Part 2:\n{part2()}")
